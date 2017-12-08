@@ -12,6 +12,6 @@ public class Pad : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float horizontal = Input.GetAxis("Horizontal") * Time.deltaTime;
-        transform.position += new Vector3(horizontal*200*Time.deltaTime, 0, 0);
+        transform.position += new Vector3(horizontal*400*Time.deltaTime, 0, 0);
 	}
 }
