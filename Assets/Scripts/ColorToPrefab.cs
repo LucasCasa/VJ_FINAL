@@ -7,4 +7,5 @@ using UnityEngine;
 public class ColorToPrefab {
     public Color color;
     public Sprite prefab;
+    public GameObject effect;
 }
