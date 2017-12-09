@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212867543297137950}
   - component: {fileID: 61420659522172372}
   - component: {fileID: 114655654191139442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BrickPrefab
   m_TagString: Brick
   m_Icon: {fileID: 0}

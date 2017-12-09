@@ -18,7 +18,7 @@ public class Brick : MonoBehaviour {
         this.particles = ps;
     }
     private void OnCollisionEnter2D(Collision2D collision) {
-        Instantiate(particles,gameObject.transform.position, new Quaternion(0,0,0,0));
-        gameObject.SetActive(false);
+        //Instantiate(particles,gameObject.transform.position, new Quaternion(0,0,0,0));
+        //gameObject.SetActive(false);
     }
 }

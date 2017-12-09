@@ -13,7 +13,6 @@ public class LoadBricks : MonoBehaviour {
         colorToIndex = new Dictionary<Color, int>();
 		for(int i = 0; i<bricks.Count; i++) {
             colorToIndex.Add(bricks[i].color, i);
-            Debug.Log("Tengo " + bricks[i].color);
         }
         LoadLevel(1);
 	}
@@ -34,7 +33,6 @@ public class LoadBricks : MonoBehaviour {
 
     void SetBrick(int i, int j) {
         Color c = bricksPosition.GetPixel(i, j);
-        Debug.Log(c);
         if (!colorToIndex.ContainsKey(c) || c.a == 0) {
             return;
         }
