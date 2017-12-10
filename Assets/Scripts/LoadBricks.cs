@@ -40,5 +40,6 @@ public class LoadBricks : MonoBehaviour {
         GameObject go = Instantiate(brickPrefab, new Vector3(i - bricksPosition.width / 2.0f, j /2.0f - bricksPosition.height / 4.0f, 0), new Quaternion(0, 0, 0, 0));
         go.GetComponent<SpriteRenderer>().sprite = s;
         go.GetComponent<Brick>().SetEffect(bricks[colorToIndex[c]].effect);
+        go.GetComponent<Brick>().score = colorToIndex[c] + 1;
     }
 }

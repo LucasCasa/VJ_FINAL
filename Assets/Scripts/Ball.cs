@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
     Vector2 velocity = new Vector2(0, 5);
     private Rigidbody2D rb;
+    public int playerId;
 	// Use this for initialization
 	void Start () {
         //rb = GetComponent<Rigidbody2D>();
@@ -22,7 +23,7 @@ public class Ball : MonoBehaviour {
             switch (hit.collider.gameObject.layer) {
 
                 case 8:
-                    Destroy(hit.collider.gameObject);
+                    hit.collider.gameObject.GetComponent<Brick>().Destroy(playerId);
                     n = hit.normal;
                     velocity = velocity - 2 * Vector2.Dot(velocity, n) * n;
                     break;
