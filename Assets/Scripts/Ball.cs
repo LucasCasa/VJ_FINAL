@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour {
     void Update() {
         transform.position += (Vector3)(velocity * Time.deltaTime);
 
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.09f, velocity, 0.1f, 1023);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.09f, velocity, 0.1f, 2047);
         Debug.DrawRay(transform.position, velocity, Color.red);
         if (hit.collider != null) {
             Vector2 n;
@@ -29,6 +29,9 @@ public class Ball : MonoBehaviour {
                     break;
                 case 9:
                     calculateCollision(hit.collider);
+                    break;
+                case 10:
+                    GameManager.Instance().GameOver(playerId);
                     break;
                 default:
                     n = hit.normal;

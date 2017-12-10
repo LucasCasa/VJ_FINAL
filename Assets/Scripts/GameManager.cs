@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour {
     private static GameManager instance;
     UIManager uiManager;
     private int[] scores = new int[2];
+    int looser = -1;
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(gameObject);
@@ -36,5 +38,12 @@ public class GameManager : MonoBehaviour {
 
     public int P2Score {
         get { return scores[1]; }
+    }
+
+    public int Looser { get { return looser; } }
+
+    internal void GameOver(int playerId) {
+        looser = playerId;
+        SceneManager.LoadScene("End");
     }
 }
