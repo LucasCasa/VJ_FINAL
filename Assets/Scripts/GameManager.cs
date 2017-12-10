@@ -22,6 +22,15 @@ public class GameManager : MonoBehaviour {
 
     public void AddScore(int playerId, int points) {
         scores[playerId] += points;
+        BlockCount--;
+        if(BlockCount == 0) {
+            if (scores[0] > scores[1])
+                GameOver(1);
+            else if (scores[1] > scores[0])
+                GameOver(0);
+            else
+                GameOver(-1);
+        }
     }
 
     public void AttachUI(UIManager manager) {
@@ -41,6 +50,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public int Looser { get { return looser; } }
+
+    public int BlockCount { get; internal set; }
 
     internal void GameOver(int playerId) {
         looser = playerId;

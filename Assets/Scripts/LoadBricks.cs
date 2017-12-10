@@ -7,7 +7,7 @@ public class LoadBricks : MonoBehaviour {
     public Texture2D bricksPosition;
     public List<ColorToPrefab> bricks;
     private Dictionary<Color, int> colorToIndex;
-    
+    private int blockCount = 0;
 	// Use this for initialization
 	void Start () {
         colorToIndex = new Dictionary<Color, int>();
@@ -28,6 +28,7 @@ public class LoadBricks : MonoBehaviour {
                 SetBrick(i, j);
             }
         }
+        GameManager.Instance().BlockCount = blockCount;
     }
 
 
@@ -41,5 +42,6 @@ public class LoadBricks : MonoBehaviour {
         go.GetComponent<SpriteRenderer>().sprite = s;
         go.GetComponent<Brick>().SetEffect(bricks[colorToIndex[c]].effect);
         go.GetComponent<Brick>().score = colorToIndex[c] + 1;
+        blockCount++;
     }
 }

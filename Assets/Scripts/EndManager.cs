@@ -9,7 +9,8 @@ public class EndManager : MonoBehaviour {
 	void Start () {
         switch (GameManager.Instance().Looser) {
             case -1:
-                text.text = "";
+                text.text = "Draw";
+                text.color = Color.white;
                 break;
             case 0:
                 text.text = "Blue wins";
