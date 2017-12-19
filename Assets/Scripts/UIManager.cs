@@ -12,11 +12,9 @@ public class UIManager : MonoBehaviour {
     private bool notStarted = true;
 	private string P1text = "Red: ";
 	private string P2text = "Blue: ";
-	private bool multi;
 	// Use this for initialization
 	void Start () {
-		multi = PlayerPrefs.GetString ("mode").ToLower ().Equals ("multi");
-		if (!multi) {
+		if (!GameManager.Instance().multi) {
 			P2text = "Score: ";
 			P1Score.gameObject.SetActive (false);
 		}
@@ -29,7 +27,7 @@ public class UIManager : MonoBehaviour {
             notStarted = false;
         }
 		P2Score.text = P2text + GameManager.Instance().P2Score;
-		if(multi)
+		if(GameManager.Instance().multi)
 			P1Score.text = P1text + GameManager.Instance().P1Score;
     }
 }

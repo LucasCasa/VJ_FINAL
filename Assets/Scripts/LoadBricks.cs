@@ -14,7 +14,7 @@ public class LoadBricks : MonoBehaviour {
 		for(int i = 0; i<bricks.Count; i++) {
             colorToIndex.Add(bricks[i].color, i);
         }
-		if (!GameManager.multi) {
+		if (!GameManager.Instance().multi) {
 			GameObject.Find ("PadP2").gameObject.SetActive (false);
 			GameObject.Find ("RedBall").gameObject.SetActive (false);
 		}

@@ -36,7 +36,7 @@ public class Ball : MonoBehaviour {
                     calculateCollision(hit.collider);
                     break;
 				case 10:
-					if (GameManager.multi || hit.collider.tag == "BlueGoal") {
+				if (GameManager.Instance().multi || hit.collider.tag == "BlueGoal") {
 						GameManager.Instance ().GameOver (hit.collider.tag == "BlueGoal" ? 1 : 0);
 					} else {
 						n = hit.normal;

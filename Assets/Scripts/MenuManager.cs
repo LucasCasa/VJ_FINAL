@@ -19,20 +19,20 @@ public class MenuManager : MonoBehaviour
     }
 
 	public void goToGameMulti() {
-		PlayerPrefs.SetString ("mode", "multi");
+		GameManager.Instance ().multi = true;
 		goToGame ();
 	}
 
 	public void goToGameSingle() {
-		PlayerPrefs.SetString ("mode", "single");
+		GameManager.Instance ().multi = false;
 		goToGame ();
+	}
+
+	public void goToMenu() {
+		SceneManager.LoadScene ("Menu");
 	}
 
     public void exit(){
         Application.Quit();
-    }
-
-    public void goToMenu(){
-        SceneManager.LoadScene("Menu");
     }
 }
