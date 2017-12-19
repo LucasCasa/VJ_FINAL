@@ -15,6 +15,7 @@ public class LoadBricks : MonoBehaviour {
             colorToIndex.Add(bricks[i].color, i);
         }
         LoadLevel(1);
+        Debug.Log("Finish Loading Level");
 	}
 	
 	// Update is called once per frame

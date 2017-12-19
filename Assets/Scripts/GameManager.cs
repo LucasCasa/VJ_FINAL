@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     UIManager uiManager;
     private int[] scores = new int[2];
     int looser = -1;
+
+    bool gameStarted = false;
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(gameObject);
@@ -38,9 +40,14 @@ public class GameManager : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name == "Game") {
+            gameStarted = true;
+        }
 	}
 
+    public bool IsStarted() {
+        return gameStarted;
+    }
     public int P1Score {
         get { return scores[0]; }
     }
@@ -56,5 +63,6 @@ public class GameManager : MonoBehaviour {
     internal void GameOver(int playerId) {
         looser = playerId;
         SceneManager.LoadScene("End");
+        gameStarted = false;
     }
 }

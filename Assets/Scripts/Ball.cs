@@ -8,12 +8,18 @@ public class Ball : MonoBehaviour {
     public int playerId;
 	// Use this for initialization
 	void Start () {
+        if (playerId == 0)
+            velocity *= -1;
         //rb = GetComponent<Rigidbody2D>();
         //rb.velocity = new Vector2(0, 5);
 	}
 
     // Update is called once per frame
     void Update() {
+        if (!GameManager.Instance().IsStarted())
+            return;
+
+        Debug.Log("Start Ball Movement");
         transform.position += (Vector3)(velocity * Time.deltaTime);
 
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.09f, velocity, 0.1f, 2047);
@@ -31,7 +37,7 @@ public class Ball : MonoBehaviour {
                     calculateCollision(hit.collider);
                     break;
                 case 10:
-                    GameManager.Instance().GameOver(playerId);
+                    GameManager.Instance().GameOver(hit.collider.tag == "BlueGoal"?1:0);
                     break;
                 default:
                     n = hit.normal;
