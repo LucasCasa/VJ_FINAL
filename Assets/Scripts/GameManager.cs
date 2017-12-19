@@ -64,5 +64,7 @@ public class GameManager : MonoBehaviour {
         looser = playerId;
         SceneManager.LoadScene("End");
         gameStarted = false;
+        scores[0] = 0;
+        scores[1] = 0;
     }
 }
