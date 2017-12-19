@@ -7,7 +7,7 @@ public class EndManager : MonoBehaviour {
     public Text text;
 	// Use this for initialization
 	void Start () {
-        switch (GameManager.Instance().Looser) {
+        switch (GameManager.Instance().Loser) {
             case -1:
                 text.text = "Draw";
                 text.color = Color.white;
