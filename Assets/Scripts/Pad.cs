@@ -9,8 +9,9 @@ public class Pad : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		minPos = GameObject.Find ("LeftWall").transform.position.x;
-		maxPos = GameObject.Find ("RightWall").transform.position.x;
+		float size = ((BoxCollider2D)gameObject.GetComponent<BoxCollider2D>()).size.x;
+		minPos = GameObject.Find ("LeftWall").transform.position.x + size/2;
+		maxPos = GameObject.Find ("RightWall").transform.position.x - size/2;
 	}
 	
 	// Update is called once per frame
