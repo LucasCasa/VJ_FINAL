@@ -6,12 +6,11 @@ public class Ball : MonoBehaviour {
     Vector2 velocity = new Vector2(0, 5);
     private Rigidbody2D rb;
     public int playerId;
+	private bool multi = false;
 	// Use this for initialization
 	void Start () {
         if (playerId == 0)
             velocity *= -1;
-        //rb = GetComponent<Rigidbody2D>();
-        //rb.velocity = new Vector2(0, 5);
 	}
 
     // Update is called once per frame
@@ -36,9 +35,14 @@ public class Ball : MonoBehaviour {
                 case 9:
                     calculateCollision(hit.collider);
                     break;
-                case 10:
-                    GameManager.Instance().GameOver(hit.collider.tag == "BlueGoal"?1:0);
-                    break;
+				case 10:
+					if (GameManager.multi || hit.collider.tag == "BlueGoal") {
+						GameManager.Instance ().GameOver (hit.collider.tag == "BlueGoal" ? 1 : 0);
+					} else {
+						n = hit.normal;
+						velocity = velocity - 2 * Vector2.Dot(velocity, n) * n;
+					}
+					break;
                 default:
                     n = hit.normal;
                     velocity = velocity - 2 * Vector2.Dot(velocity, n) * n;
@@ -57,7 +61,6 @@ public class Ball : MonoBehaviour {
             float dir = -Mathf.Sign(velocity.y);
             float relativeDistanceToCenter = (transform.position.x - collider.transform.position.x) / (collider.bounds.size.x / 2);
             velocity = new Vector2(magnitude * Mathf.Sin(relativeDistanceToCenter * Mathf.PI / 3), dir*magnitude * Mathf.Cos(relativeDistanceToCenter * Mathf.PI / 3));
-            //rb.velocity = new Vector2(* 2, rb.velocity.y);
         }
         if(collider.tag == "Goals") {
             Debug.Log("Game Over");

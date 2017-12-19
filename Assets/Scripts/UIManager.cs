@@ -10,9 +10,16 @@ public class UIManager : MonoBehaviour {
     public Text StartText;
     private int[] scores = new int[2];
     private bool notStarted = true;
+	private string P1text = "Red: ";
+	private string P2text = "Blue: ";
+	private bool multi;
 	// Use this for initialization
 	void Start () {
-		
+		multi = PlayerPrefs.GetString ("mode").ToLower ().Equals ("multi");
+		if (!multi) {
+			P2text = "Score: ";
+			P1Score.gameObject.SetActive (false);
+		}
 	}
 	
 	// Update is called once per frame
@@ -21,7 +28,8 @@ public class UIManager : MonoBehaviour {
             Destroy(StartText);
             notStarted = false;
         }
-        P1Score.text = "Red: " + GameManager.Instance().P1Score;
-        P2Score.text = "Blue: " + GameManager.Instance().P2Score;
+		P2Score.text = P2text + GameManager.Instance().P2Score;
+		if(multi)
+			P1Score.text = P1text + GameManager.Instance().P1Score;
     }
 }

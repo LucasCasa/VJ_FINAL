@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour {
     private static GameManager instance;
     UIManager uiManager;
     private int[] scores = new int[2];
-    int looser = -1;
+	public static bool multi = false;
+    int loser = -1;
 
     bool gameStarted = false;
 	// Use this for initialization
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene(1);
         instance = this;
+		multi = PlayerPrefs.GetString ("mode").ToLower().Equals ("multi");
 	}
 	
     public static GameManager Instance() {
@@ -40,8 +42,12 @@ public class GameManager : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+		if (!gameStarted) {
+			Time.timeScale = 0;
+		}
         if (Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name == "Game") {
             gameStarted = true;
+			Time.timeScale = 1;
         }
 	}
 
@@ -56,12 +62,12 @@ public class GameManager : MonoBehaviour {
         get { return scores[1]; }
     }
 
-    public int Looser { get { return looser; } }
+	public int Loser { get { return loser; } }
 
     public int BlockCount { get; internal set; }
 
     internal void GameOver(int playerId) {
-        looser = playerId;
+        loser = playerId;
         SceneManager.LoadScene("End");
         gameStarted = false;
         scores[0] = 0;
