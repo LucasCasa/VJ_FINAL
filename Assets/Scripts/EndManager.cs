@@ -16,9 +16,13 @@ public class EndManager : MonoBehaviour {
                 text.text = "Blue wins";
                 text.color = new Color(74 /255f, 190/255f, 239/255f);
                 break;
-            case 1:
-                text.text = "Red wins";
-                text.color = Color.red;
+			case 1:
+				if (GameManager.multi) {
+					text.text = "Red wins";
+					text.color = Color.red;
+				} else {
+					text.text = "Finish!";
+				}
                 break;
         }
 	}

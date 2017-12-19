@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     private static GameManager instance;
     UIManager uiManager;
     private int[] scores = new int[2];
+	public static bool multi = false;
     int loser = -1;
 
     bool gameStarted = false;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadScene(1);
         instance = this;
+		multi = PlayerPrefs.GetString ("mode").ToLower().Equals ("multi");
 	}
 	
     public static GameManager Instance() {
