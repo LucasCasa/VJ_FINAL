@@ -16,8 +16,8 @@ public class Pad : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float horizontal = Input.GetAxis(movement) * Time.deltaTime;
-        transform.position += new Vector3(horizontal*400*Time.deltaTime, 0, 0);
+        float horizontal = Input.GetAxis(movement);
+        transform.position += new Vector3(horizontal*10*Time.deltaTime, 0, 0);
 		if (transform.position.x < minPos) {
 			transform.position -= new Vector3(transform.position.x-minPos,0,0);
 		} else if (transform.position.x > maxPos) { 
